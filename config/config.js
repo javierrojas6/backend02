@@ -7,9 +7,9 @@ config.application.maxItemsPerPage = 100;
 config.database = {};
 config.database.dialect = "mysql";
 config.database.username = "root";
-config.database.password = "";
+config.database.password = "CwqSoIu9pZMorHuZ";
 config.database.port = "3306";
-config.database.host = "127.0.0.1";
+config.database.host = "phenixbytes.com";
 config.database.database = "rappi";
 config.database.operatorsAliases = false;
 
@@ -21,7 +21,7 @@ config.database.pool.idle = 10000;
 
 config.sequelize = {};
 config.sequelize.sync = {};
-config.sequelize.sync.force = false;
+config.sequelize.sync.force = true;
 config.sequelize.sync.logging = null;
 
 module.exports = config;

@@ -39,8 +39,17 @@ module.exports = (sequelize, DataTypes) => {
         });
 
     Product.associate = models => {
-        Product.belongsToMany(models.User, {
+        Product.belongsToMany(models.Cart, {
+            through: 'cart_product',
             foreignKey: 'product'
+        });
+
+        Product.belongsTo(models.Category, {
+            foreignKey: 'category'
+        });
+
+        Product.belongsTo(models.File, {
+            foreignKey: 'photo'
         });
     };
 

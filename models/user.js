@@ -60,6 +60,10 @@ module.exports = (sequelize, DataTypes) => {
             through: 'user_role',
             foreignKey: 'user'
         });
+
+        User.belongsTo(models.File, {
+            foreignKey: 'photo'
+        });
     };
 
     return User;

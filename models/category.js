@@ -1,16 +1,24 @@
 "use strict";
 
 module.exports = (sequelize, DataTypes) => {
-    let Cart = sequelize.define('Cart', {
+    let Category = sequelize.define('Category', {
         id: {
             type: DataTypes.INTEGER,
             autoIncrement: true,
             allowNull: false,
             primaryKey: true
         },
+        nombre: {
+            type: DataTypes.STRING,
+            allowNull: false,
+        },
+        description: {
+            type: DataTypes.TEXT,
+            allowNull: false,
+        }
     }, {
             // don't add the timestamp attributes (updatedAt, createdAt)
-            timestamps: true,
+            timestamps: false,
 
             // don't use camelcase for automatically added attributes but underscore style
             // so updatedAt will be updated_at
@@ -22,7 +30,7 @@ module.exports = (sequelize, DataTypes) => {
             freezeTableName: false,
 
             // define the table's name
-            tableName: 'cart',
+            tableName: 'category',
 
             // Enable optimistic locking.  When enabled, sequelize will add a version count attribute
             // to the model and throw an OptimisticLockingError error when stale instances are saved.
@@ -30,17 +38,12 @@ module.exports = (sequelize, DataTypes) => {
             version: false
         });
 
-    Cart.associate = models => {
-
-        Cart.belongsToMany(models.Product, {
-            through: 'cart_product',
-            foreignKey: 'cart'
-        });
-
-        Cart.belongsTo(models.User, {
-            foreignKey: 'user'
+    Category.associate = models => {
+        Category.hasMany(models.Product, {
+            as: 'Products',
+            foreignKey: 'category'
         });
     };
 
-    return Cart;
+    return Category;
 };
