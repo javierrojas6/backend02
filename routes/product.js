@@ -8,7 +8,10 @@ router.post('/save', (req, res, next) => {
     description: req.query.descripcion,
   };
 
-  models.Product.create(nuevoProducto);
+  models.Product.create(nuevoProducto)
+    .then(elNuevoProducto => {
+      res.json(elNuevoProducto);
+    });
 });
 
 module.exports = router;
