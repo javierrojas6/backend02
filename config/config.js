@@ -21,7 +21,7 @@ config.database.pool.idle = 10000;
 
 config.sequelize = {};
 config.sequelize.sync = {};
-config.sequelize.sync.force = true;
+config.sequelize.sync.force = false;
 config.sequelize.sync.logging = null;
 
 module.exports = config;
