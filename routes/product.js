@@ -1,31 +1,33 @@
 var express = require('express');
 var router = express.Router();
+var object = require('../modules/objectsAndTypes');
 
 router.post('/save', (req, res, next) => {
-  const nuevoProducto = {
-    nombre: req.query.nombre,
-    description: req.query.descripcion,
-  };
-
-  models.Product.create(nuevoProducto)
-    .then(elNuevoProducto => {
-      res.json(elNuevoProducto);
+  object.save([
+    'nombre',
+    'description'
+  ], req.query, 'Product')
+    .then(response => {
+      res.json({ status: true, content: response });
+    })
+    .catch(response => {
+      res.json({ status: false, content: response });
     });
 });
 
 router.put('/save/:id', (req, res, next) => {
-  console.log(req.params.id);
-  models.Product.findOne({
-    where: { id: req.params.id }
-  }).then(product => {
-    product.nombre = req.query.nombre;
-    product.description = req.query.description;
-
-    product.save()
-      .then(p => {
-        res.json(p);
-      })
-  });
+  let values = req.query;
+  values.id = req.params.id;
+  object.update([
+    'nombre',
+    'description'
+  ], values, 'Product')
+    .then(response => {
+      res.json({ status: true, content: response });
+    })
+    .catch(response => {
+      res.json({ status: false, content: response });
+    });
 });
 
 module.exports = router;
