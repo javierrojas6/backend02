@@ -4,11 +4,12 @@
  * Module dependencies.
  */
 
+config = require('../config/config');
+
 var app = require('../app');
 var debug = require('debug')('back01:server');
 var http = require('http');
 
-config = require('../config/config');
 models = require('../models');
 
 /**

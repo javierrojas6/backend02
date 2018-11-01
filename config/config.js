@@ -24,4 +24,16 @@ config.sequelize.sync = {};
 config.sequelize.sync.force = false;
 config.sequelize.sync.logging = null;
 
+config.crypto = {};
+config.crypto.salt = "o8y¿¡nw4v5@pym5+pq98y oq w6 j{w5{6´j w{56o,jw4*pi6mjr46w59phu$sa(q4n5)hñq45hñq3";
+
+config.uploads = {};
+config.uploads.defaultTmpUpload = 'uploads';
+config.uploads.defaultPrivateFolder = 'public/files/private';
+config.uploads.defaultPrivateUpload = `${config.uploads.defaultPrivateFolder}/tmp/`;
+config.uploads.filenameLength = 32;
+
+config.validate = {};
+config.validate.thumbnailUrl = /^\/private(\/(\d+)x(\d+))?\/(.*)+\/?$/;
+
 module.exports = config;

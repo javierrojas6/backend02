@@ -17,6 +17,14 @@ module.exports = (sequelize, DataTypes) => {
         password: {
             type: DataTypes.STRING,
             allowNull: false,
+            set: function (password) {
+                this.setDataValue('password', crypto.createHmac('sha256', config.crypto.salt)
+                    .update(password)
+                    .digest('hex'));
+            },
+            get: function () {
+                return '*****';
+            }
         },
         firstName: {
             type: DataTypes.STRING,

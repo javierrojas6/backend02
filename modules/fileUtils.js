@@ -1,8 +1,8 @@
 /* global config */
 
 let multer = require('multer'),
-        fs = require('fs'),
-        random = require('randomstring');
+    fs = require('fs'),
+    random = require('randomstring');
 
 let fileUtils = {};
 
@@ -26,7 +26,7 @@ fileUtils.upload = (options) => {
             callback(null, newfilename);
         }
     });
-    return multer({storage: storage}).any();
+    return multer({ storage: storage }).any();
 };
 
 fileUtils.getPublicURL = (url) => {
