@@ -121,6 +121,137 @@
 			]
 		},
 		{
+			"name": "User",
+			"item": [
+				{
+					"name": "User - Save",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "localhost:3000/user/save?email=example1@example.com&password=123456&firstName=Juan&lastName=Perez&birthday=2001-10-25",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"user",
+								"save"
+							],
+							"query": [
+								{
+									"key": "email",
+									"value": "example1@example.com"
+								},
+								{
+									"key": "password",
+									"value": "123456"
+								},
+								{
+									"key": "firstName",
+									"value": "Juan"
+								},
+								{
+									"key": "lastName",
+									"value": "Perez"
+								},
+								{
+									"key": "birthday",
+									"value": "2001-10-25"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "User  - GET",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "localhost:3000/user/4",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"user",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "User  - DELETE",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "localhost:3000/user/delete/3",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"user",
+								"delete",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "User  - Update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "localhost:3000/user/save/2?email=example1@example.com&password=123456&firstName=Juan&lastName=Perez&birthday=2001-10-25",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"user",
+								"save",
+								"2"
+							],
+							"query": [
+								{
+									"key": "email",
+									"value": "example1@example.com"
+								},
+								{
+									"key": "password",
+									"value": "123456"
+								},
+								{
+									"key": "firstName",
+									"value": "Juan"
+								},
+								{
+									"key": "lastName",
+									"value": "Perez"
+								},
+								{
+									"key": "birthday",
+									"value": "2001-10-25"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
 			"name": "Category",
 			"item": [
 				{
@@ -180,7 +311,7 @@
 						"header": [],
 						"body": {},
 						"url": {
-							"raw": "localhost:3000/category/products/1",
+							"raw": "localhost:3000/category/products/all",
 							"host": [
 								"localhost"
 							],
@@ -188,7 +319,7 @@
 							"path": [
 								"category",
 								"products",
-								"1"
+								"all"
 							]
 						}
 					},
@@ -267,14 +398,30 @@
 		{
 			"name": "File - Upload",
 			"request": {
-				"method": "GET",
-				"header": [],
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"type": "text",
+						"disabled": true
+					}
+				],
 				"body": {
-					"mode": "raw",
-					"raw": ""
+					"mode": "file",
+					"file": {}
 				},
 				"url": {
-					"raw": ""
+					"raw": "localhost:3000/file/upload",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"file",
+						"upload"
+					]
 				}
 			},
 			"response": []
