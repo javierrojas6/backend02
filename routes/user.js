@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var object = require('../modules/objectsAndTypes');
+var crypto = require('crypto');
 
 router.get('/:id', (req, res, next) => {
   object.get('User', req.params.id, 1)
@@ -49,10 +50,14 @@ router.delete('/delete/:id', (req, res, next) => {
 });
 
 router.post('/login', (req, res, next) => {
+  const password = crypto.createHmac('sha256', config.crypto.salt)
+    .update(req.query.password)
+    .digest('hex');
+
   models.User.findOne({
     where: {
       email: req.query.email,
-      password: req.query.password,
+      password: password,
     }
   }).then(user => {
     if (user) {
