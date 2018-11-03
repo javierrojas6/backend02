@@ -25,7 +25,7 @@ router.post('/save', (req, res, next) => {
     });
 });
 
-router.put('/save/:id', (req, res, next) => {
+router.put('/save/:id', passport.authenticate('bearer', { session: false }), (req, res, next) => {
   let values = req.query;
   values.id = req.params.id;
   object.update([
@@ -61,9 +61,9 @@ router.post('/login', (req, res, next) => {
     }
   }).then(user => {
     if (user) {
-      const token=crypto.createHmac('sha256', config.crypto.salt)
-      .update(`${user.id}-${user.email}-${Math.random()}`)
-      .digest('hex')
+      const token = crypto.createHmac('sha256', config.crypto.salt)
+        .update(`${user.id}-${user.email}-${Math.random()}`)
+        .digest('hex')
 
       user.token = token;
       user.save();

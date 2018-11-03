@@ -3,6 +3,7 @@ let config = {};
 config.application = {};
 config.application.host = 'localhost';
 config.application.maxItemsPerPage = 100;
+config.application.xPowerBy='mi aplicacion';
 
 config.database = {};
 config.database.dialect = "mysql";
@@ -32,6 +33,7 @@ config.uploads.defaultTmpUpload = 'uploads';
 config.uploads.defaultPrivateFolder = 'public/files/private';
 config.uploads.defaultPrivateUpload = `${config.uploads.defaultPrivateFolder}/tmp/`;
 config.uploads.filenameLength = 32;
+
 
 config.validate = {};
 config.validate.thumbnailUrl = /^\/private(\/(\d+)x(\d+))?\/(.*)+\/?$/;
