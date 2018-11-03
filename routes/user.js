@@ -61,6 +61,12 @@ router.post('/login', (req, res, next) => {
     }
   }).then(user => {
     if (user) {
+      const token=crypto.createHmac('sha256', config.crypto.salt)
+      .update(`${user.id}-${user.email}-${Math.random()}`)
+      .digest('hex')
+
+      user.token = token;
+      user.save();
       res.json({ status: true, content: user });
     } else {
       res.json({ status: false, content: 'usuario no esta' });
