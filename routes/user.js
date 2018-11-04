@@ -28,6 +28,7 @@ router.post('/save', (req, res, next) => {
 router.put('/save/:id', passport.authenticate('bearer', { session: false }), (req, res, next) => {
   let values = req.query;
   values.id = req.params.id;
+
   object.update([
     'email', 'password', 'firstName', 'lastName', 'birthday'
   ], values, 'User')
@@ -74,6 +75,12 @@ router.post('/login', (req, res, next) => {
   }).catch(message => {
     res.json({ status: false, content: 'error' });
   });
+});
+
+router.post('/logout', passport.authenticate('bearer', { session: false }), (req, res, next) => {
+  req.session.user.token = null;
+  req.session.user.save();
+  res.json({ status: true, content: 'adios' });
 });
 
 module.exports = router;

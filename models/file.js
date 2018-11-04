@@ -1,4 +1,5 @@
 "use strict";
+let fileUtils = require('../modules/fileUtils');
 
 module.exports = (sequelize, DataTypes) => {
     var File = sequelize.define("File", {
@@ -20,6 +21,9 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.STRING,
             allowNull: false,
             unique: 'path',
+            get() {
+                return fileUtils.getPublicURL(this.getDataValue('path'));
+            }
         },
         mime: {
             type: DataTypes.STRING,
@@ -27,10 +31,10 @@ module.exports = (sequelize, DataTypes) => {
         },
         size: DataTypes.INTEGER.UNSIGNED
     }, {
-        tableName: 'File',
-        freezeTableName: true,
-        underscored: false
-    });
-    
+            tableName: 'File',
+            freezeTableName: true,
+            underscored: false
+        });
+
     return File;
 };
