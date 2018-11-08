@@ -14,7 +14,10 @@ let util = {};
 util.check = (url) => {
     return new Promise((resolve, reject) => {
         var result = config.validate.thumbnailUrl.exec(url);
-        let display = result[1] ? { width: result[2], height: result[3] } : false;
+        let display = result[1] ? {
+            width: result[2],
+            height: result[3]
+        } : false;
         let uri = result[4] ? result[4] : false;
 
         if (display) {
@@ -24,7 +27,7 @@ util.check = (url) => {
             if (!fileUtils.exist(thumbnailPath))
                 fileUtils.createPath(thumbnailPath);
 
-            var absolutePathOriginalImage = config.application.systemPath + '/' + config.uploads.defaultPrivateFolder + '/' + uri;
+            var absolutePathOriginalImage = config.application.systemPath + '/' + config.uploads.defaultPrivateFolder + '/tmp/' + uri;
             var absolutePathThumbnail = config.application.systemPath + '/' + config.uploads.defaultPrivateFolder + thumbnailPath;
 
             sharp(absolutePathOriginalImage)
@@ -38,7 +41,9 @@ util.check = (url) => {
                 });
         } else
             //solicita la imagen sin thumbnail
-            resolve({ filepath: '/' + uri });
+            resolve({
+                filepath: '/' + uri
+            });
     });
 };
 

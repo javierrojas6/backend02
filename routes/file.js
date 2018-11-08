@@ -102,9 +102,10 @@ router.get(config.validate.thumbnailUrl, (req, res, next) => {
         }
     };
 
-    var result = /\/(\w+)$/.exec(uri);
+    var result = /\/?(\w+)$/.exec(uri);
 
     filename = result[1] ? result[1] : false;
+
     if (filename)
         models.File
             .findOne({ where: { filename } })
@@ -118,7 +119,6 @@ router.get(config.validate.thumbnailUrl, (req, res, next) => {
                     thumbnail.check(req.url)
                         .then(thumbnail => {
                             let imagePath = `/${config.uploads.defaultPrivateFolder}/${thumbnail.filepath}`;
-
                             res.sendFile(imagePath, options, function (err) {
                                 if (err) {
                                     res.locals.message = `el archivo ${req.url} no existe`;

@@ -16,6 +16,8 @@ var fileRouter = require('./routes/file');
 
 var app = express();
 
+config.application.systemPath = __dirname;
+
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
