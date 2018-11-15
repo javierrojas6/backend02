@@ -8,6 +8,7 @@ var device = require('express-device');
 
 require('./modules/authentication-verifier');
 
+var allRouter = require('./routes/all');
 var indexRouter = require('./routes/index');
 var productRouter = require('./routes/product');
 var categoryRouter = require('./routes/category');
@@ -23,9 +24,10 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(device.capture({parseUserAgent: true}));
+app.use(device.capture({ parseUserAgent: true }));
 
 app.use(sessionVerifier.restoreSessionFix);
+app.use(allRouter);
 app.use('/', indexRouter);
 app.use('/product', productRouter);
 app.use('/user', userRouter);

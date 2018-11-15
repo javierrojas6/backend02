@@ -57,7 +57,7 @@ router.get('/products/:id', (req, res, next) => {
     ],
     all: [
       { model: models.Product, as: 'Products' }
-    ] 
+    ]
   };
 
   object.get('Category', req.params.id, 1, includes)
